@@ -1,0 +1,16 @@
+{
+  "name": "LASU Scholar",
+  "short_name": "LASU Scholar",
+  "description": "Study smarter, practise better and prepare stronger.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
