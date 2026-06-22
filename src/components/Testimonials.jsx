@@ -1,48 +1,78 @@
-const reviews = [
+import { useEffect, useState } from "react";
+import { getApprovedReviews } from "../services/reviews";
+
+const fallbackReviews = [
   {
     name: "Aisha M.",
     meta: "Medicine & Surgery",
     score: "4.7 CGPA",
     text: "LASU Scholar makes studying feel more organized. I know what to read and what to practise before exams.",
+    rating: 5,
   },
   {
     name: "Daniel O.",
     meta: "Physiotherapy",
     score: "4.5 CGPA",
     text: "Practice Mode helped me discover the topics I was weak in before the test.",
+    rating: 5,
   },
   {
     name: "Mariam A.",
     meta: "Nursing",
     score: "4.8 CGPA",
     text: "The app feels like having past questions, notes and progress tracking in one place.",
+    rating: 5,
   },
   {
     name: "Tolu B.",
     meta: "Computer Science",
     score: "4.4 CGPA",
     text: "I like how everything is arranged by course and topic. No more random reading.",
+    rating: 5,
   },
   {
     name: "Favour E.",
     meta: "Accounting",
     score: "4.6 CGPA",
     text: "The CBT-style exam mode makes preparation feel more serious and realistic.",
+    rating: 5,
   },
   {
     name: "Kenny S.",
     meta: "LASUCOM",
     score: "4.9 CGPA",
     text: "This is the kind of study tool LASU students actually need.",
+    rating: 5,
   },
 ];
+
+function normalizeReview(item) {
+  return {
+    name: item.display_name || "LASU Scholar Student",
+    meta: [item.department, item.level].filter(Boolean).join(" • ") || "Student",
+    score: "Verified",
+    text: item.review || "",
+    rating: item.rating || 5,
+  };
+}
+
+function StarText({ rating = 5 }) {
+  const safeRating = Math.max(1, Math.min(5, Number(rating || 5)));
+
+  return (
+    <div className="text-xs text-orange-400">
+      {"★".repeat(safeRating)}
+      <span className="text-orange-400/20">{"★".repeat(5 - safeRating)}</span>
+    </div>
+  );
+}
 
 function ReviewCard({ review }) {
   return (
     <div className="group mx-4 flex h-[235px] w-[305px] shrink-0 flex-col justify-between rounded-[2rem] border border-white/10 bg-[#070b12]/75 p-6 shadow-[0_35px_110px_rgba(0,0,0,.7)] backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-orange-400/40 hover:bg-[#0b111d]/85 hover:shadow-[0_40px_120px_rgba(249,115,22,.18)] sm:w-[340px]">
       <div>
         <div className="mb-5 flex items-center justify-between">
-          <div className="text-xs text-orange-400">★★★★★</div>
+          <StarText rating={review.rating} />
 
           <div className="rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black text-orange-300">
             Verified
@@ -72,7 +102,7 @@ function ReviewCard({ review }) {
   );
 }
 
-function ReviewRow({ reverse = false }) {
+function ReviewRow({ reviews, reverse = false }) {
   const row = [...reviews, ...reviews, ...reviews];
 
   return (
@@ -91,6 +121,25 @@ function ReviewRow({ reverse = false }) {
 }
 
 export default function Testimonials() {
+  const [reviews, setReviews] = useState(fallbackReviews);
+
+  useEffect(() => {
+    loadApprovedReviews();
+  }, []);
+
+  async function loadApprovedReviews() {
+    try {
+      const approved = await getApprovedReviews();
+
+      if (approved && approved.length > 0) {
+        setReviews(approved.map(normalizeReview));
+      }
+    } catch (error) {
+      console.log("Reviews fetch error:", error);
+      setReviews(fallbackReviews);
+    }
+  }
+
   return (
     <section
       id="testimonials"
@@ -110,8 +159,8 @@ export default function Testimonials() {
         </h2>
 
         <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-orange-50/60 sm:text-base">
-          Early feedback from students using AIA•ACADEMY learning resources and
-          the LASU Scholar experience.
+          Feedback from students using AIA•ACADEMY learning resources and the
+          LASU Scholar experience.
         </p>
       </div>
 
@@ -123,11 +172,16 @@ export default function Testimonials() {
           <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-black/95 to-transparent sm:w-40" />
 
           <div className="relative z-10 space-y-8">
-            <ReviewRow />
-            <ReviewRow reverse />
+            <ReviewRow reviews={reviews} />
+            <ReviewRow reviews={reviews} reverse />
           </div>
         </div>
       </div>
+
+      <p className="relative z-10 mx-auto mt-10 max-w-3xl px-5 text-center text-xs font-medium leading-6 text-orange-50/35">
+        LASU Scholar is an independent learning platform powered by AIA•ACADEMY
+        and is not officially affiliated with Lagos State University.
+      </p>
     </section>
   );
 }
