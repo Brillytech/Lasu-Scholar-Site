@@ -5,42 +5,42 @@ const fallbackReviews = [
   {
     name: "Aisha M.",
     meta: "Medicine & Surgery",
-    score: "4.7 CGPA",
+    score: "Early Feedback",
     text: "LASU Scholar makes studying feel more organized. I know what to read and what to practise before exams.",
     rating: 5,
   },
   {
     name: "Daniel O.",
     meta: "Physiotherapy",
-    score: "4.5 CGPA",
+    score: "Early Feedback",
     text: "Practice Mode helped me discover the topics I was weak in before the test.",
     rating: 5,
   },
   {
     name: "Mariam A.",
     meta: "Nursing",
-    score: "4.8 CGPA",
+    score: "Early Feedback",
     text: "The app feels like having past questions, notes and progress tracking in one place.",
     rating: 5,
   },
   {
     name: "Tolu B.",
     meta: "Computer Science",
-    score: "4.4 CGPA",
+    score: "Early Feedback",
     text: "I like how everything is arranged by course and topic. No more random reading.",
     rating: 5,
   },
   {
     name: "Favour E.",
     meta: "Accounting",
-    score: "4.6 CGPA",
+    score: "Early Feedback",
     text: "The CBT-style exam mode makes preparation feel more serious and realistic.",
     rating: 5,
   },
   {
     name: "Kenny S.",
     meta: "LASUCOM",
-    score: "4.9 CGPA",
+    score: "Early Feedback",
     text: "This is the kind of study tool LASU students actually need.",
     rating: 5,
   },
@@ -50,7 +50,7 @@ function normalizeReview(item) {
   return {
     name: item.display_name || "LASU Scholar Student",
     meta: [item.department, item.level].filter(Boolean).join(" • ") || "Student",
-    score: "Verified",
+    score: "Student Review",
     text: item.review || "",
     rating: item.rating || 5,
   };
@@ -102,7 +102,7 @@ function ReviewCard({ review }) {
           </div>
         </div>
 
-        <p className="text-sm font-black text-orange-500 dark:text-orange-400">
+        <p className="text-xs font-black text-orange-500 dark:text-orange-400">
           {review.score}
         </p>
       </div>
@@ -111,7 +111,8 @@ function ReviewCard({ review }) {
 }
 
 function ReviewRow({ reviews, reverse = false }) {
-  const row = [...reviews, ...reviews, ...reviews];
+  const limitedReviews = reviews.slice(0, 15);
+  const row = [...limitedReviews, ...limitedReviews, ...limitedReviews];
 
   return (
     <div className="relative mx-auto max-w-[1120px] overflow-hidden py-2">
@@ -140,7 +141,7 @@ export default function Testimonials() {
       const approved = await getApprovedReviews();
 
       if (approved && approved.length > 0) {
-        setReviews(approved.map(normalizeReview));
+        setReviews(approved.slice(0, 15).map(normalizeReview));
       }
     } catch (error) {
       console.log("Reviews fetch error:", error);
