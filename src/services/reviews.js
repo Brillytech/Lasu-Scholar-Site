@@ -2,7 +2,7 @@ import { supabase } from "../lib/supabase";
 
 export async function getApprovedReviews() {
   const { data, error } = await supabase
-    .from("reviews")
+    .from("app_reviews")
     .select("*")
     .eq("status", "approved")
     .order("created_at", { ascending: false })
@@ -10,5 +10,5 @@ export async function getApprovedReviews() {
 
   if (error) throw error;
 
-  return data;
+  return data || [];
 }
