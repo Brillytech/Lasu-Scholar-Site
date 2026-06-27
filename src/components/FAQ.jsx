@@ -43,14 +43,14 @@ function FAQItem({ item }) {
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="group w-full rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-6 text-left shadow-[0_25px_80px_rgba(0,0,0,.45)] backdrop-blur-xl transition hover:border-orange-400/30 hover:bg-white/[0.055]"
+      className="group w-full rounded-[1.7rem] border border-[#EADBC7] bg-[#FDFBF8]/80 p-6 text-left shadow-[0_25px_80px_rgba(15,23,42,.07)] backdrop-blur-xl transition hover:border-orange-200 hover:bg-[#FCFAF7] dark:border-white/10 dark:bg-[#FCFAF7]/[0.04] dark:shadow-[0_25px_80px_rgba(0,0,0,.45)] dark:hover:border-orange-400/30 dark:hover:bg-[#FCFAF7]/[0.055]"
     >
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-base font-black text-white sm:text-lg">
+        <h3 className="text-base font-black text-[#1F2937] sm:text-lg dark:text-white">
           {item.q}
         </h3>
 
-        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-orange-500/10 text-orange-400">
+        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-orange-50 text-orange-500 dark:bg-orange-500/10 dark:text-orange-400">
           <Plus className={`transition ${open ? "rotate-45" : ""}`} size={19} />
         </div>
       </div>
@@ -64,7 +64,9 @@ function FAQItem({ item }) {
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <p className="mt-4 leading-7 text-orange-50/60">{item.a}</p>
+            <p className="mt-4 leading-7 text-[#5F6673] dark:text-orange-50/60">
+              {item.a}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -74,9 +76,12 @@ function FAQItem({ item }) {
 
 export default function FAQ() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-black px-5 py-24">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(249,115,22,.14),transparent_35%),linear-gradient(to_bottom,black,transparent_20%,transparent_80%,black)]" />
+    <section
+      id="faq"
+      className="relative overflow-hidden bg-[#F8F6F2] px-5 py-24 transition-colors duration-300 dark:bg-black"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.04)_1px,transparent_1px)] bg-[size:48px_48px] dark:bg-[linear-gradient(rgba(249,115,22,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(249,115,22,.14),transparent_35%),linear-gradient(to_bottom,#F8F6F2,rgba(255,252,248,.7),#F8F6F2)] dark:bg-[radial-gradient(circle_at_50%_20%,rgba(249,115,22,.14),transparent_35%),linear-gradient(to_bottom,black,transparent_20%,transparent_80%,black)]" />
 
       <div className="relative mx-auto max-w-4xl">
         <div className="mb-12 text-center">
@@ -84,7 +89,7 @@ export default function FAQ() {
             FAQ
           </p>
 
-          <h2 className="text-4xl font-black leading-tight text-white sm:text-5xl">
+          <h2 className="text-4xl font-black leading-tight text-[#1F2937] sm:text-5xl dark:text-white">
             Questions students usually ask.
           </h2>
         </div>

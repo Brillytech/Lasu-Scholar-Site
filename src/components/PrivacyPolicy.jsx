@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="mb-10 rounded-[2rem] border border-orange-400/15 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 md:p-10"
+          className="mb-10 rounded-[2rem] border border-orange-400/15 bg-[#FCFAF7]/[0.04] p-6 shadow-2xl shadow-black/20 md:p-10"
         >
           <p className="text-xs font-black uppercase tracking-[0.28em] text-orange-400">
             LASU Scholar
@@ -71,7 +71,7 @@ export default function PrivacyPolicy() {
 
 function LegalSection({ title, children }) {
   return (
-    <section className="mb-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+    <section className="mb-6 rounded-3xl border border-white/10 bg-[#FCFAF7]/[0.04] p-6">
       <h2 className="text-xl font-black text-white">{title}</h2>
       <p className="mt-3 text-sm font-medium leading-7 text-slate-400">{children}</p>
     </section>

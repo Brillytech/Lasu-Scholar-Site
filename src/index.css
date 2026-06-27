@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 * {
   box-sizing: border-box;
 }
@@ -10,8 +10,8 @@ html {
 
 body {
   margin: 0;
-  background: #050505;
-  color: #fff7ed;
+  background: #F8F6F2;
+  color: #111827;
   font-family: Inter, system-ui, sans-serif;
 }
 
