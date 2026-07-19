@@ -84,7 +84,7 @@ export default function Founder() {
           </p>
 
           <p className="mt-5 text-base leading-7 text-[#5F6673] sm:text-lg sm:leading-8 dark:text-orange-50/65">
-            He also <strong>founded and leads LASU Scholar</strong>, a digital
+            He also <strong>founded and leads LASU Scholar App</strong>, a digital
             learning platform designed to help LASU students study smarter with
             structured study materials, practice questions, progress tracking
             and exam-focused preparation.
@@ -106,7 +106,7 @@ export default function Founder() {
             </span>
 
             <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-orange-400">
-              Founder • LASU Scholar
+              Founder • LASU Scholar App
             </span>
 
             <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-orange-400">
