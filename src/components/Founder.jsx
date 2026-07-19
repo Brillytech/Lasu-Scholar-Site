@@ -67,7 +67,7 @@ export default function Founder() {
           </div>
 
           <h2 className="mt-5 text-3xl font-black leading-tight text-[#1F2937] sm:text-4xl lg:text-5xl dark:text-white">
-            Built by Students.
+            Built by a Student.
             <br />
             For Students.
           </h2>
