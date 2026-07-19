@@ -1,5 +1,5 @@
 import { Award, GraduationCap, Laptop2 } from "lucide-react";
-import founder from "../assets/founder.jpg";
+import founder from "../assets/aia-founder.jpg";
 
 export default function Founder() {
   return (
