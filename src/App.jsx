@@ -12,6 +12,7 @@ import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Particles from "./components/Particles";
 import SectionDivider from "./components/SectionDivider";
+import Founder from "./components/Founder";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -60,19 +61,29 @@ export default function App() {
       <Particles />
 
       <div className="relative z-10">
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <Hero />
-        <SectionDivider />
-        <Testimonials />
-        <SectionDivider />
-        <Features />
-        <SectionDivider />
-        <AppShowcase />
-        <SectionDivider />
-        <FAQ />
-        <SectionDivider />
-        <CTA />
-        <Footer />
+       <Navbar theme={theme} toggleTheme={toggleTheme} />
+
+<Hero />
+<SectionDivider />
+
+<Features />
+<SectionDivider />
+
+<AppShowcase />
+<SectionDivider />
+
+<Testimonials />
+<SectionDivider />
+
+<Founder />
+<SectionDivider />
+
+<FAQ />
+<SectionDivider />
+
+<CTA />
+
+<Footer />
       </div>
     </main>
   );
